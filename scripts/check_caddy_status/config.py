@@ -9,20 +9,18 @@ GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "")
 # This makes the script work for any fork without configuration.
 _github_repository = os.environ.get("GITHUB_REPOSITORY", "").lower()
 
-# Docker Hub — override with DOCKERHUB_REPOSITORY_NAME if set, else fall back to repo
+# Docker Hub — only used to check the official Caddy image; no custom image is pushed there
 OFFICIAL_CADDY_IMAGE = "library/caddy"
-CUSTOM_IMAGE = os.environ.get("DOCKERHUB_REPOSITORY_NAME", "") or _github_repository
+CUSTOM_IMAGE = os.environ.get("DOCKERHUB_REPOSITORY_NAME", "")
 
 # GHCR — always matches the GitHub repo
 GHCR_IMAGE = os.environ.get("GHCR_IMAGE", "") or _github_repository
 
-# Platforms required in both official and custom images
+# Platforms required in both official and custom images — must match the
+# `platforms:` list in .github/workflows/build-docker-image.yml
 REQUIRED_PLATFORMS = {
     "linux/amd64",
     "linux/arm64",
-    "linux/arm/v7",
-    "linux/ppc64le",
-    "linux/s390x",
 }
 
 # Modules built into the Docker image — must match Dockerfile
