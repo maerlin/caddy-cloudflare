@@ -1,0 +1,9 @@
+{
+  "title": "Caddy Cloudflare",
+  "description": "Caddy with Cloudflare DNS module",
+  "verify_module": "dns.providers.cloudflare",
+  "alpine_alias": false,
+  "slim": false,
+  "create_release": false,
+  "platforms": ["linux/amd64", "linux/arm64"]
+}
